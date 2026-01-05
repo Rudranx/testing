@@ -1,25 +1,14 @@
-// Import the required modules
-const mysql = require('mysql2'); // Import the MySQL for Node.js library
-const credentials = require('./credentials'); // Import database credentials
+const mysql = require("mysql2");
+require("dotenv").config();
 
-// Create a new database connection
-const db = mysql.createConnection({
-    host: credentials.hostname,        // Hostname from the credentials file
-    user: credentials.username,        // Username from the credentials file
-    password: credentials.password,    // Password from the credentials file
-    database: credentials.databasename // Database name from the credentials file
+const db = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306,
+  waitForConnections: true,
+  connectionLimit: 10
 });
 
-// Connect to the database
-db.connect(err => {
-    if (err) {
-        // Log an error message if the connection fails
-        console.error('Error connecting to the database:', err);
-        return;
-    }
-    // Log a success message if the connection is successful
-    console.log('Connected to the MySQL database.');
-});
-
-// Export the database connection
 module.exports = db;
