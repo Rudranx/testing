@@ -7,11 +7,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// serve frontend
-app.use(express.static(path.join(__dirname, "frontend")));
+// static files + homepage
+app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // API routes
