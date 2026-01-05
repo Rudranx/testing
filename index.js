@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 require("dotenv").config();
 
-const app = express();   // ✅ THIS LINE WAS MISSING
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -14,14 +14,12 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "index.html"));
 });
 
-// routes
+// API routes
 app.use("/api/animal", require("./routes/animal"));
 app.use("/api/auth", require("./routes/authentication"));
 app.use("/api/customer", require("./routes/customer"));
-// add other routes if present
 
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
