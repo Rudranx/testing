@@ -1,75 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/loginUser.css">
-    <script src="script.js" defer></script>
-    <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
-    <link rel="icon" href="../resources/images/productLogo.PNG" type="image/x-icon">
-    <title>Login Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafePaws</title>
+
+  <!-- Fonts & Icons -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/frontend/css/index.css" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="login-section">
-            <h1>Login</h1>
-            <form id="loginForm">
-                <input id="email" type="email" placeholder="Enter your Email" required>
-                <input id="password" type="password" placeholder="Password" required>
-                <div class="button-group">
-                    <button type="submit" class="btn primary">Login</button>
-                    <button type="button" class="btn secondary" onclick="location.href='signUpUser.html'">New User?</button>
-                </div>
-            </form>
-        </div>
 
-        <div class="image-section">
-            <img src="../resources/images/loginPageDisplayImage.jpg" alt="animal picture">
-            <p>"Animals are nature's reminder of love's purest form."</p>
-        </div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <img
+      src="/frontend/resources/images/productLogo.PNG"
+      alt="SafePaws Logo"
+      class="logo"
+    />
+
+    <div class="nav-links">
+      <a href="/frontend/screens/index.html" class="nav-link">Home</a>
+      <a href="/frontend/screens/aboutUs.html" class="nav-link">About Us</a>
+      <a href="/frontend/screens/contact.html" class="nav-link">Contact</a>
     </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Welcome to SafePaws</h1>
+    <p>Protecting animals. Empowering humans.</p>
+
+    <div class="button-group">
+      <!-- FIXED: navigation buttons as links -->
+      <a href="/frontend/screens/signUpUser.html" class="blue-button">
+        Sign Up
+      </a>
+
+      <a href="/frontend/screens/loginUser.html" class="blue-button">
+        Login
+      </a>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <a href="/frontend/screens/AnimalWellBeing_screen.html" class="card">
+      <h3>Animal Well-Being</h3>
+      <p>Learn how to protect and care for animals.</p>
+    </a>
+
+    <a href="/frontend/screens/endangered.html" class="card">
+      <h3>Endangered Species</h3>
+      <p>Know which species need urgent help.</p>
+    </a>
+
+    <a href="/frontend/screens/strayAnimals.html" class="card">
+      <h3>Stray Animals</h3>
+      <p>Support and rescue stray animals.</p>
+    </a>
+
+    <a href="/frontend/screens/sponsorManagement.html" class="card">
+      <h3>Sponsor</h3>
+      <p>Become a sponsor and make a difference.</p>
+    </a>
+  </section>
+
 </body>
-
-<script>
-    
-    document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('loginForm');
-
-    loginForm.addEventListener('submit', async function(event) {
-        event.preventDefault();  // Prevent the default form submission
-
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-
-        var payload = {
-            email: email,
-            password: password
-        };
-
-        try {
-            const response = await fetch('http://localhost:3000/routes/authentication/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
-
-            const data = await response.json();
-            const message = data.status;
-            if(message == 'Logged in successfully'){
-                alert("Logged in successfully");
-                window.location.href = 'main.html';
-            }else{
-                alert(message);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    });
-});
-
-</script>
 </html>
